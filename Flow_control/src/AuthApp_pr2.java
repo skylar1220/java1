@@ -8,30 +8,38 @@ public class AuthApp_pr2 {
 		// users 입력 받기
 		Scanner in = new Scanner(System.in);
 
-		System.out.print("Your name?: ");
+		System.out.print("Id?: ");
 		String inputId = in.next();
 
 		System.out.print("Password?: ");
 		String inputPw = in.next();
 
-		System.out.print("Second Password?: ");
-		String inputPw2 = in.next();
 
 		// users, 비밀번호 맞는지 반복문, 조건문
-		boolean isLogined = false;
-		
+		boolean isRightId = false;
+		boolean isRightPw = false;
+
 		for (int i = 0; i < users.length; i++) {
 			String[] current = users[i];
-			if (inputId.equals(current[0]) && 
-					(inputPw.equals(current[1]) || inputPw2.equals(current[1]))) {
-				isLogined = true;
+
+			boolean isId = inputId.equals(current[0]);
+			boolean isPw = inputPw.equals(current[1]);
+
+			if (isId && isPw) {
+				isRightId = true;
+				isRightPw = true;
 				break;
-			}
+			} else if (isId) {
+				isRightId = true;
+			} 
 		}
-		if (isLogined) {
+
+		if ( isRightId && isRightPw ) {
 			System.out.println("Welcome! " + inputId);
+		} else if ( isRightId ) {
+			System.out.println("WRONG PW!!");
 		} else {
-			System.out.println("WRONG USER or PW!! ");
+			System.out.println("WRONG ID!!");
 		}
 
 	}
